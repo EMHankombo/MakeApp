@@ -1,0 +1,48 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.enoch.makeapp.HomeFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+
+
+    <Button
+        android:id="@+id/lipStick"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="45dp"
+        android:text="Lipstick" />
+
+    <Button
+        android:id="@+id/mascara"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="35dp"
+        android:text="Mascara"
+        android:layout_below="@+id/lipStick"
+        android:layout_alignLeft="@+id/lipStick"
+        android:layout_alignStart="@+id/lipStick" />
+
+    <Button
+        android:id="@+id/nailPolish"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nail Polish"
+        android:layout_centerVertical="true"
+        android:layout_alignLeft="@+id/mascara"
+        android:layout_alignStart="@+id/mascara" />
+
+    <Button
+        android:id="@+id/foundation"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/nailPolish"
+        android:layout_alignStart="@+id/nailPolish"
+        android:layout_below="@+id/nailPolish"
+        android:layout_marginTop="67dp"
+        android:text="Foundation" />
+
+</RelativeLayout>
