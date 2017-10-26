@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
 
                 case R.id.navigation_notifications:
-                    fragmentTransaction.replace(R.id.content,new BrandFragment()).commit();
+                    fragmentTransaction.replace(R.id.content,new HomeBrandFragment()).commit();
                     return true;
             }
             return false;

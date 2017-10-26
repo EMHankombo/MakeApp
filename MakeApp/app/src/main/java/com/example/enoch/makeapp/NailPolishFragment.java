@@ -18,6 +18,8 @@ import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
 
@@ -27,7 +29,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class NailPolishFragment extends BaseFragment implements INailPolishListMvpView{
     //
 
-    RecyclerView recyclerView;
+     @BindView(R.id.recyclerNail) RecyclerView recyclerView;
 
     private NailPolishListPresenter<INailPolishListMvpView> nailPolishListMvpViewNailPolishListPresenter;
     public NailPolishFragment() {
@@ -42,7 +44,11 @@ public class NailPolishFragment extends BaseFragment implements INailPolishListM
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_nail_polish, container, false);
+        View view = inflater.inflate(R.layout.fragment_nail_polish, container, false);
+
+        ButterKnife.bind(this,view);
+
+        return view;
     }
 
     @Override
@@ -59,7 +65,7 @@ public class NailPolishFragment extends BaseFragment implements INailPolishListM
 
     public void initializeRecycler(View view){
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerNail);
+       // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerNail);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
     }
@@ -83,7 +89,7 @@ public class NailPolishFragment extends BaseFragment implements INailPolishListM
                 itemFragment.setArguments(args);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,itemFragment).commit();
+                        .replace(R.id.content,itemFragment).addToBackStack(null).commit();
             }
         }));
     }

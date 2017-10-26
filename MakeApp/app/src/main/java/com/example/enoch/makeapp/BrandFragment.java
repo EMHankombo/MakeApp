@@ -20,6 +20,8 @@ import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
 
@@ -28,11 +30,11 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 public class BrandFragment extends BaseFragment implements IBrandListMvpView{
 
-    RecyclerView recyclerView;
+    @BindView(R.id.recyclerViewBrand) RecyclerView recyclerView;
 
     private BrandsListPresenter<IBrandListMvpView> brandListMvpViewBrandsListPresenter;
 
-    String brand = "maybelline";
+
 
 
     public BrandFragment() {
@@ -45,6 +47,11 @@ public class BrandFragment extends BaseFragment implements IBrandListMvpView{
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_brand, container, false);
+
+        ButterKnife.bind(this,view);
+
+
+        String brand = getArguments().getString("brand");
 
         brandListMvpViewBrandsListPresenter = new BrandsListPresenter<>(new AppDataManager(),new AppSchedulerProvider()
                 ,new CompositeDisposable());
@@ -94,7 +101,7 @@ public class BrandFragment extends BaseFragment implements IBrandListMvpView{
                 itemFragment.setArguments(args);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,itemFragment).commit();
+                        .replace(R.id.content,itemFragment).addToBackStack(null).commit();
             }
         }));
     }

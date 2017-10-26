@@ -20,6 +20,8 @@ import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
 
@@ -28,8 +30,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
-
-    RecyclerView recyclerView;
+    @BindView(R.id.recyclerLip) RecyclerView recyclerView;
 
     private LipStickPresenter<ILipstickMvpView> lipstickMvpViewLipStickPresenter;
 
@@ -45,7 +46,7 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
         View view = inflater.inflate(R.layout.fragment_lipstick, container, false);
 
-
+        ButterKnife.bind(this,view);
 
 
         return  view;
@@ -66,7 +67,7 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
     public void initializeRecycler(View view){
 
-        recyclerView = (RecyclerView) view.findViewById(R.id.recyclerLip);
+       // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerLip);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
     }
@@ -92,7 +93,7 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
                 itemFragment.setArguments(args);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,itemFragment).commit();
+                        .replace(R.id.content,itemFragment).addToBackStack(null).commit();
             }
 
     }));

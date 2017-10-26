@@ -20,6 +20,8 @@ import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
 
@@ -28,7 +30,7 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 public class FoundationFragment extends BaseFragment implements IFoundationListMvpView {
 
-    RecyclerView recyclerView;
+    @BindView(R.id.recyclerFoundation) RecyclerView recyclerView;
 
     private FoundationListPresenter<IFoundationListMvpView> foundationListMvpViewFoundationListPresenter;
 
@@ -41,7 +43,12 @@ public class FoundationFragment extends BaseFragment implements IFoundationListM
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_foundation, container, false);
+        View view = inflater.inflate(R.layout.fragment_foundation, container, false);
+
+        ButterKnife.bind(this,view);
+
+        return view;
+
     }
 
     @Override
@@ -58,7 +65,7 @@ public class FoundationFragment extends BaseFragment implements IFoundationListM
 
     public void initiiliazieRecycler(View view){
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerFoundation);
+       // recyclerView = (RecyclerView)view.findViewById(R.id.recyclerFoundation);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
     }
@@ -81,7 +88,7 @@ public class FoundationFragment extends BaseFragment implements IFoundationListM
                 itemFragment.setArguments(args);
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,itemFragment).commit();
+                        .replace(R.id.content,itemFragment).addToBackStack(null).commit();
             }
 
 

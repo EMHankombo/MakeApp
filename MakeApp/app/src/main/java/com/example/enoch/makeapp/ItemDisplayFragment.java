@@ -19,6 +19,8 @@ import com.example.enoch.makeapp.ui.itemDisplay.IItemDisplayMvpView;
 import com.example.enoch.makeapp.ui.itemDisplay.ItemDisplayPresenter;
 import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
 import io.reactivex.disposables.CompositeDisposable;
 
 
@@ -28,7 +30,7 @@ import io.reactivex.disposables.CompositeDisposable;
 public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvpView {
 
 
-    RecyclerView recyclerView;
+    @BindView(R.id.recyclerItem) RecyclerView recyclerView;
 
     private IItemDisplayMvpPresenter<IItemDisplayMvpView> iItemDisplayMvpViewIItemDisplayMvpPresenter;
     public ItemDisplayFragment() {
@@ -41,11 +43,15 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_item, container, false);
+
+
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        ButterKnife.bind(this,view);
 
         initialiseRecycler(view);
 
@@ -58,11 +64,12 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
         iItemDisplayMvpViewIItemDisplayMvpPresenter.onViewPrepared(id);
         iItemDisplayMvpViewIItemDisplayMvpPresenter.onAttach(this);
 
+
     }
 
     public void initialiseRecycler(View view){
 
-        recyclerView = (RecyclerView)view.findViewById(R.id.recyclerItem);
+        //recyclerView = (RecyclerView)view.findViewById(R.id.recyclerItem);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
     }

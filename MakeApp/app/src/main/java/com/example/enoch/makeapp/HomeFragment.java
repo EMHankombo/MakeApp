@@ -11,14 +11,21 @@ import android.widget.Button;
 
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 
 /**
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
+    @BindView(R.id.lip) Button lipstick;
+    @BindView(R.id.mascara) Button mascara;
+    @BindView(R.id.nailPolish) Button nailPolish;
+    @BindView(R.id.foundation) Button foundation;
 
-    Button lipstick,mascara,nailPolish,foundation;
+
     public HomeFragment() {
         // Required empty public constructor
     }
@@ -30,10 +37,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         // / Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
-        lipstick =(Button) view.findViewById(R.id.lip);
+       /** lipstick =(Button) view.findViewById(R.id.lip);
         mascara = (Button) view.findViewById(R.id.mascara);
         nailPolish = (Button) view.findViewById(R.id.nailPolish);
-        foundation = (Button) view.findViewById(R.id.foundation);
+        foundation = (Button) view.findViewById(R.id.foundation); **/
+
+        ButterKnife.bind(this,view);
+
 
 
         //Set onClick listeners for the lipstick button
@@ -41,7 +51,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,new LipstickFragment()).commit();
+                        .replace(R.id.content,new LipstickFragment()).addToBackStack(null).commit();
             }
         });
 
@@ -50,7 +60,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             public void onClick(View v) {
 
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,new MascaraFragment()).commit();
+                        .replace(R.id.content,new MascaraFragment()).addToBackStack(null).commit();
             }
         });
 
@@ -58,7 +68,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,new NailPolishFragment()).commit();
+                        .replace(R.id.content,new NailPolishFragment()).addToBackStack(null).commit();
             }
         });
 
@@ -66,7 +76,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             @Override
             public void onClick(View v) {
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,new FoundationFragment()).commit();
+                        .replace(R.id.content,new FoundationFragment()).addToBackStack(null).commit();
             }
         });
 
@@ -91,15 +101,15 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
 
             case R.id.mascara:
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,new MascaraFragment()).commit();
+                        .replace(R.id.content,new MascaraFragment()).addToBackStack(null).commit();
 
             case R.id.nailPolish:
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,new NailPolishFragment()).commit();
+                        .replace(R.id.content,new NailPolishFragment()).addToBackStack(null).commit();
 
             case R.id.foundation:
                 getActivity().getSupportFragmentManager().beginTransaction()
-                        .replace(R.id.content,new FoundationFragment()).commit();
+                        .replace(R.id.content,new FoundationFragment()).addToBackStack(null).commit();
 
 
         }
