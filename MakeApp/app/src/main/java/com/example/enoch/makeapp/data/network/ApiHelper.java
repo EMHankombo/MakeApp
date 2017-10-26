@@ -1,5 +1,7 @@
 package com.example.enoch.makeapp.data.network;
 
+import com.example.enoch.makeapp.data.model.BrandModel;
+import com.example.enoch.makeapp.data.model.ItemDisplayModel;
 import com.example.enoch.makeapp.data.model.ProductModel;
 
 import java.util.List;
@@ -14,9 +16,14 @@ public interface ApiHelper {
 
     Observable<List<ProductModel>> useCaseLipstick();
 
-    Observable<List<ProductModel>>  useCaseMascara();
+    Observable<List<ProductModel>> useCaseMascara();
 
-    Observable<List<ProductModel>>  useCaseNailPolish();
+    Observable<List<ProductModel>> useCaseNailPolish();
 
-    Observable<List<ProductModel>>  useCaseFoundation();
+    Observable<List<ProductModel>> useCaseFoundation();
+
+    Observable<List<BrandModel>>  useCaseBrand(String brand);
+
+    Observable<ItemDisplayModel> useCaseItemDisplay(int id);
+
 }

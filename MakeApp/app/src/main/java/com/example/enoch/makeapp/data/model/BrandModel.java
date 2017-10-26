@@ -1,7 +1,7 @@
 package com.example.enoch.makeapp.data.model;
 
 /**
- * Created by mainza1992 on 18/10/2017.
+ * Created by mainza1992 on 19/10/2017.
  */
 
 import com.google.gson.annotations.Expose;
@@ -9,7 +9,7 @@ import com.google.gson.annotations.SerializedName;
 
 import java.util.List;
 
-public class ProductModel {
+public class BrandModel {
 
     @SerializedName("id")
     @Expose
@@ -40,7 +40,7 @@ public class ProductModel {
     private String rating;
     @SerializedName("category")
     @Expose
-    private String category;
+    private Object category;
     @SerializedName("product_type")
     @Expose
     private String productType;
@@ -132,11 +132,11 @@ public class ProductModel {
         this.rating = rating;
     }
 
-    public String getCategory() {
+    public Object getCategory() {
         return category;
     }
 
-    public void setCategory(String category) {
+    public void setCategory(Object category) {
         this.category = category;
     }
 

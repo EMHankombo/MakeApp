@@ -15,4 +15,6 @@ public class API_CONSTANTS {
     public static final String NAIL_POLISH_API = "products.json?product_tags=Natural&product_type=nail_polish";
 
     public static final String FOUNDATION_API = "products.json?product_category=liquid&product_type=foundation";
+
+
 }

@@ -1,0 +1,43 @@
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.example.enoch.makeapp.HomeBrandFragment">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:text="BrandHome" />
+
+    <Button
+        android:id="@+id/Maybelline"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="53dp"
+        android:text="Maybelline" />
+
+    <Button
+        android:id="@+id/loreal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignLeft="@+id/Maybelline"
+        android:layout_alignStart="@+id/Maybelline"
+        android:layout_below="@+id/Maybelline"
+        android:layout_marginTop="67dp"
+        android:text="L'oreal" />
+
+    <Button
+        android:id="@+id/revlon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignEnd="@+id/loreal"
+        android:layout_alignRight="@+id/loreal"
+        android:layout_below="@+id/loreal"
+        android:layout_marginTop="68dp"
+        android:text="Revlon" />
+
+
+</RelativeLayout>

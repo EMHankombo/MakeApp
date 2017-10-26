@@ -20,18 +20,14 @@ import android.app.ProgressDialog;
 import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
-import android.support.design.widget.Snackbar;
 import android.support.v4.app.Fragment;
-import android.support.v4.content.ContextCompat;
 import android.view.View;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.enoch.makeapp.R;
 import com.example.enoch.makeapp.ui.utils.CommonUtils;
 import com.example.enoch.makeapp.ui.utils.NetworkUtils;
 
-import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
@@ -56,7 +52,7 @@ public abstract class BaseFragment extends Fragment implements com.example.enoch
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setRetainInstance(true);
-        unbinder = ButterKnife.bind(this, view);
+        //unbinder = ButterKnife.bind(this, view);
     }
 
     @Override
@@ -73,13 +69,13 @@ public abstract class BaseFragment extends Fragment implements com.example.enoch
     }
 
     private void showSnackBar(String message) {
-        Snackbar snackbar = Snackbar.make(getView().findViewById(android.R.id.content),
-                message, Snackbar.LENGTH_SHORT);
-        View sbView = snackbar.getView();
-        TextView textView = (TextView) sbView
-                .findViewById(android.support.design.R.id.snackbar_text);
-        textView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
-        snackbar.show();
+//        Snackbar snackbar = Snackbar.make(getActivity().findViewById(android.R.id.content),
+//                message, Snackbar.LENGTH_SHORT);
+//        View sbView = snackbar.getView();
+//        TextView textView = (TextView) sbView
+//                .findViewById(android.support.design.R.id.snackbar_text);
+//        textView.setTextColor(ContextCompat.getColor(getActivity(), R.color.colorPrimaryDark));
+//        snackbar.show();
     }
     @Override
     public void showMessage(String message) {
@@ -124,6 +120,6 @@ public abstract class BaseFragment extends Fragment implements com.example.enoch
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        unbinder.unbind();
+        //unbinder.unbind();
     }
 }
