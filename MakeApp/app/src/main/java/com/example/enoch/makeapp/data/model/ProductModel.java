@@ -44,9 +44,9 @@ public class ProductModel {
     @SerializedName("product_type")
     @Expose
     private String productType;
-    @SerializedName("tag_list")
-    @Expose
-    private List<Object> tagList = null;
+//    @SerializedName("tag_list")
+//    @Expose
+//    private List<Object> tagList = null;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -148,13 +148,13 @@ public class ProductModel {
         this.productType = productType;
     }
 
-    public List<Object> getTagList() {
-        return tagList;
-    }
-
-    public void setTagList(List<Object> tagList) {
-        this.tagList = tagList;
-    }
+//    public List<Object> getTagList() {
+//        return tagList;
+//    }
+//
+//    public void setTagList(List<Object> tagList) {
+//        this.tagList = tagList;
+//    }
 
     public String getCreatedAt() {
         return createdAt;

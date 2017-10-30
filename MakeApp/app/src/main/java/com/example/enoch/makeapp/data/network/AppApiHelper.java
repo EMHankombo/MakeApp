@@ -8,17 +8,22 @@ import com.example.enoch.makeapp.data.network.service.IRequestInterface;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.Observable;
 
 /**
  * Created by mainza1992 on 18/10/2017.
  */
 
+@Singleton
 public class AppApiHelper implements ApiHelper {
 
     private IRequestInterface requestInterface;
 
     //empty constructor
+    @Inject
     public AppApiHelper() {
         this.requestInterface = ConnectionService.getConnectionService();
     }

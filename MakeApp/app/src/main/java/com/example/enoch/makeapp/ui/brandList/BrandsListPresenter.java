@@ -9,6 +9,8 @@ import com.example.enoch.makeapp.ui.utils.rx.SchedulerProvider;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -18,6 +20,8 @@ import io.reactivex.functions.Consumer;
  */
 
 public class BrandsListPresenter <V extends IBrandListMvpView> extends BasePresenter<V> implements IBrandListMvpPresenter<V> {
+
+    @Inject
     public BrandsListPresenter(DataManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProvider, compositeDisposable);
     }

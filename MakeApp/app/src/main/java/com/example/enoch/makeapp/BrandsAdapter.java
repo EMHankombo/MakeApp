@@ -37,7 +37,7 @@ public class BrandsAdapter extends RecyclerView.Adapter<BrandsAdapter.BrandViewH
     @Override
     public BrandViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-        View view = LayoutInflater.from(parent.getContext()).inflate(row,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(row,parent,false);
 
         return new BrandViewHolder(view);
     }

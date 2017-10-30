@@ -1,74 +1,57 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="2"
+
     tools:context="com.example.enoch.makeapp.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 
 
-    <Button
-        android:id="@+id/lip"
-        android:layout_width="150dp"
-        android:layout_height="160dp"
-        android:layout_alignParentTop="true"
-        android:layout_marginTop="59dp"
-        android:text="Lipstick"
-        app:layout_constraintLeft_toLeftOf="@+id/nailPolish"
-        app:layout_constraintRight_toRightOf="@+id/nailPolish"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+
+
+
+            <Button
+                android:id="@+id/lip"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_column="0"
+                android:layout_columnWeight="1"
+                android:layout_row="0"
+                android:layout_rowWeight="1"
+                android:text="Lipstick" />
 
     <Button
         android:id="@+id/mascara"
-        android:layout_width="150dp"
-        android:layout_height="160dp"
-        android:layout_alignLeft="@+id/lip"
-        android:layout_alignStart="@+id/lip"
-        android:layout_below="@+id/lip"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
-        android:text="Mascara"
-        app:layout_constraintBottom_toBottomOf="@+id/lip"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/lip"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_row="0"
+        android:layout_rowWeight="1"
+        android:text="Mascara" />
 
     <Button
         android:id="@+id/nailPolish"
-        android:layout_width="150dp"
-        android:layout_height="160dp"
-        android:layout_alignLeft="@+id/mascara"
-        android:layout_alignStart="@+id/mascara"
-        android:layout_centerVertical="true"
-        android:layout_marginLeft="25dp"
-        android:layout_marginStart="25dp"
-        android:text="Nail Polish"
-        app:layout_constraintBaseline_toBaselineOf="@+id/foundation"
-        app:layout_constraintLeft_toLeftOf="parent"
-        tools:layout_constraintBaseline_creator="1"
-        tools:layout_constraintLeft_creator="1" />
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_row="1"
+        android:layout_rowWeight="1"
+        android:text="Nail Polish" />
 
-    <Button
-        android:id="@+id/foundation"
-        android:layout_width="150dp"
-        android:layout_height="160dp"
-        android:layout_alignLeft="@+id/nailPolish"
-        android:layout_alignStart="@+id/nailPolish"
-        android:layout_below="@+id/nailPolish"
-        android:layout_marginTop="37dp"
-        android:text="Foundation"
-        app:layout_constraintLeft_toLeftOf="@+id/mascara"
-        app:layout_constraintRight_toRightOf="@+id/mascara"
-        app:layout_constraintTop_toBottomOf="@+id/mascara"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintHorizontal_bias="0.0" />
+            <Button
+                android:id="@+id/foundation"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_column="1"
+                android:layout_columnWeight="1"
+                android:layout_row="1"
+                android:layout_rowWeight="1"
+                android:text="Foundation" />
 
-</android.support.constraint.ConstraintLayout>
+
+</GridLayout>

@@ -6,16 +6,21 @@ import com.example.enoch.makeapp.data.model.ProductModel;
 
 import java.util.List;
 
+import javax.inject.Inject;
+import javax.inject.Singleton;
+
 import io.reactivex.Observable;
 
 /**
  * Created by mainza1992 on 18/10/2017.
  */
 
+@Singleton
 public class AppDataManager implements DataManager {
 
     private ApiHelper apiHelper;
 
+    @Inject
     public AppDataManager( ) {
         this.apiHelper = new AppApiHelper();
     }

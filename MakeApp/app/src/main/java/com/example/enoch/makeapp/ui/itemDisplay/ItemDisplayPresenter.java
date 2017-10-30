@@ -5,6 +5,8 @@ import com.example.enoch.makeapp.data.network.DataManager;
 import com.example.enoch.makeapp.ui.base.BasePresenter;
 import com.example.enoch.makeapp.ui.utils.rx.SchedulerProvider;
 
+import javax.inject.Inject;
+
 import io.reactivex.annotations.NonNull;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.functions.Consumer;
@@ -15,7 +17,7 @@ import io.reactivex.functions.Consumer;
 
 public class ItemDisplayPresenter <V extends IItemDisplayMvpView> extends BasePresenter<V> implements IItemDisplayMvpPresenter<V> {
 
-
+    @Inject
     public ItemDisplayPresenter(DataManager dataManager, SchedulerProvider schedulerProvider, CompositeDisposable compositeDisposable) {
         super(dataManager, schedulerProvider, compositeDisposable);
     }

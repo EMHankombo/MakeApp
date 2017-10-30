@@ -12,17 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.enoch.makeapp.data.model.ProductModel;
-import com.example.enoch.makeapp.data.network.AppDataManager;
+import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
+import com.example.enoch.makeapp.di.component.IActivityComponent;
+import com.example.enoch.makeapp.di.module.ActivityModule;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 import com.example.enoch.makeapp.ui.mascaraList.IMascaraMvpView;
 import com.example.enoch.makeapp.ui.mascaraList.MascaraPresenter;
-import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.disposables.CompositeDisposable;
+
+import static com.example.enoch.makeapp.MyApp.getApplication;
 
 
 /**
@@ -30,9 +34,17 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
 
+    IActivityComponent iActivityComponent;
+
+    public IActivityComponent getiActivityComponent() {
+        return iActivityComponent;
+    }
+
     @BindView(R.id.recyclerMascara) RecyclerView recyclerView;
 
-    private MascaraPresenter<IMascaraMvpView> mascaraMvpViewMascaraPresenter;
+    @Inject
+    MascaraPresenter<IMascaraMvpView> mascaraMvpViewMascaraPresenter;
+
     public MascaraFragment() {
         // Required empty public constructor
     }
@@ -46,6 +58,9 @@ public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
 
         ButterKnife.bind(this,view);
 
+        initializeRecycler(view);
+        initialiseDagger();
+
         return view;
 
     }
@@ -54,10 +69,11 @@ public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initializeRecycler(view);
 
-        mascaraMvpViewMascaraPresenter = new MascaraPresenter<>(new AppDataManager(),new AppSchedulerProvider(),
-                new CompositeDisposable());
+
+        /*mascaraMvpViewMascaraPresenter = new MascaraPresenter<>(new AppDataManager(),new AppSchedulerProvider(),
+                new CompositeDisposable()); */
+
         mascaraMvpViewMascaraPresenter.onViewPrepared();
         mascaraMvpViewMascaraPresenter.onAttach(this);
 
@@ -68,6 +84,15 @@ public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
        // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerMascara);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
+    }
+
+    private void initialiseDagger() {
+        iActivityComponent = DaggerIActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .iApplicationComponent(((MyApp) getApplication()).getiApplicationComponent())
+                .build();
+
+        getiActivityComponent().inject(this);
     }
 
     @Override

@@ -12,16 +12,19 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.enoch.makeapp.data.model.ItemDisplayModel;
-import com.example.enoch.makeapp.data.network.AppDataManager;
+import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
+import com.example.enoch.makeapp.di.component.IActivityComponent;
+import com.example.enoch.makeapp.di.module.ActivityModule;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 import com.example.enoch.makeapp.ui.itemDisplay.IItemDisplayMvpPresenter;
 import com.example.enoch.makeapp.ui.itemDisplay.IItemDisplayMvpView;
-import com.example.enoch.makeapp.ui.itemDisplay.ItemDisplayPresenter;
-import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.disposables.CompositeDisposable;
+
+import static com.example.enoch.makeapp.MyApp.getApplication;
 
 
 /**
@@ -29,10 +32,17 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvpView {
 
+    IActivityComponent iActivityComponent;
+
+    public IActivityComponent getiActivityComponent() {
+        return iActivityComponent;
+    }
 
     @BindView(R.id.recyclerItem) RecyclerView recyclerView;
 
-    private IItemDisplayMvpPresenter<IItemDisplayMvpView> iItemDisplayMvpViewIItemDisplayMvpPresenter;
+    @Inject
+   IItemDisplayMvpPresenter<IItemDisplayMvpView> iItemDisplayMvpViewIItemDisplayMvpPresenter;
+
     public ItemDisplayFragment() {
         // Required empty public constructor
     }
@@ -55,10 +65,12 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
 
         initialiseRecycler(view);
 
+        initialiseDagger();
+
         int id = getArguments().getInt("id");
 
-        iItemDisplayMvpViewIItemDisplayMvpPresenter = new ItemDisplayPresenter<>(new AppDataManager(),new AppSchedulerProvider(),
-                new CompositeDisposable());
+      /*  iItemDisplayMvpViewIItemDisplayMvpPresenter = new ItemDisplayPresenter<>(new AppDataManager(),new AppSchedulerProvider(),
+                new CompositeDisposable()); */
 
         //Pass the id as a parameter here
         iItemDisplayMvpViewIItemDisplayMvpPresenter.onViewPrepared(id);
@@ -72,6 +84,15 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
         //recyclerView = (RecyclerView)view.findViewById(R.id.recyclerItem);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+    }
+
+    private void initialiseDagger() {
+        iActivityComponent = DaggerIActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .iApplicationComponent(((MyApp) getApplication()).getiApplicationComponent())
+                .build();
+
+        getiActivityComponent().inject(this);
     }
 
     @Override

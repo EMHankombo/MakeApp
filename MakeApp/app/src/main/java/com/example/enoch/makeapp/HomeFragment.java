@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.enoch.makeapp.di.component.IActivityComponent;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 
 import butterknife.BindView;
@@ -19,6 +20,12 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class HomeFragment extends BaseFragment implements View.OnClickListener {
+
+    IActivityComponent iActivityComponent;
+    public IActivityComponent getiActivityComponent() {
+        return iActivityComponent;
+    }
+
 
     @BindView(R.id.lip) Button lipstick;
     @BindView(R.id.mascara) Button mascara;

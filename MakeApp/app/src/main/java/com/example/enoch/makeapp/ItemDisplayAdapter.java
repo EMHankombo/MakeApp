@@ -31,7 +31,7 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
 
     @Override
     public ItemViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(row,null);
+        View view = LayoutInflater.from(parent.getContext()).inflate(row,parent,false);
 
         return new ItemViewHolder(view);
     }

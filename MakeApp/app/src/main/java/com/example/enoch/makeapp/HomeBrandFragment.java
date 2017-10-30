@@ -2,6 +2,7 @@ package com.example.enoch.makeapp;
 
 
 import android.os.Bundle;
+import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -18,6 +19,8 @@ import butterknife.ButterKnife;
  * A simple {@link Fragment} subclass.
  */
 public class HomeBrandFragment extends BaseFragment {
+
+
 
     @BindView(R.id.maybelline) Button maybelline;
 
@@ -118,4 +121,8 @@ public class HomeBrandFragment extends BaseFragment {
         return view;
     }
 
+    @Override
+    public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
 }

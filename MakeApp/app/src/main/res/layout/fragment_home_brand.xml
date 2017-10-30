@@ -1,94 +1,60 @@
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<GridLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:layout_weight="2"
     tools:context="com.example.enoch.makeapp.HomeBrandFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
-        android:layout_width="0dp"
-        android:layout_height="0dp"
-        android:text="BrandHome"
-        tools:layout_constraintTop_creator="1"
-        tools:layout_constraintBottom_creator="1"
-        android:layout_marginStart="8dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        android:layout_marginTop="8dp"
-        tools:layout_constraintLeft_creator="1"
-        android:layout_marginBottom="8dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginLeft="8dp" />
+
 
     <Button
         android:id="@+id/maybelline"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:layout_marginLeft="26dp"
-        android:layout_marginStart="26dp"
-        android:layout_marginTop="40dp"
         android:text="Maybelline"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_row="0"
+        android:layout_rowWeight="1"
+        />
 
     <Button
         android:id="@+id/loreal"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_alignBaseline="@+id/maybelline"
-        android:layout_alignBottom="@+id/maybelline"
-        android:layout_alignLeft="@+id/annabelle"
-        android:layout_alignStart="@+id/annabelle"
-        android:layout_marginTop="36dp"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_row="0"
+        android:layout_rowWeight="1"
+
         android:text="L'oreal"
-        app:layout_constraintLeft_toLeftOf="@+id/maybelline"
-        app:layout_constraintRight_toRightOf="@+id/maybelline"
-        app:layout_constraintTop_toBottomOf="@+id/maybelline"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintHorizontal_bias="0.0" />
+        />
 
     <Button
         android:id="@+id/revlon"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_alignLeft="@+id/maybelline"
-        android:layout_alignStart="@+id/maybelline"
-        android:layout_below="@+id/loreal"
-        android:layout_marginEnd="16dp"
-        android:layout_marginRight="16dp"
+        android:layout_column="0"
+        android:layout_columnWeight="1"
+        android:layout_row="1"
+        android:layout_rowWeight="1"
+
         android:text="Revlon"
-        app:layout_constraintBottom_toBottomOf="@+id/maybelline"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/maybelline"
-        tools:layout_constraintBottom_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1" />
+        />
 
     <Button
         android:id="@+id/annabelle"
         android:layout_width="150dp"
         android:layout_height="150dp"
-        android:layout_alignBaseline="@+id/revlon"
-        android:layout_alignBottom="@+id/revlon"
-        android:layout_alignParentEnd="true"
-        android:layout_alignParentRight="true"
-        android:layout_marginTop="36dp"
+        android:layout_column="1"
+        android:layout_columnWeight="1"
+        android:layout_row="1"
+        android:layout_rowWeight="1"
         android:text="Annabelle"
-        app:layout_constraintLeft_toLeftOf="@+id/revlon"
-        app:layout_constraintRight_toRightOf="@+id/revlon"
-        app:layout_constraintTop_toBottomOf="@+id/revlon"
-        tools:layout_constraintLeft_creator="1"
-        tools:layout_constraintRight_creator="1"
-        tools:layout_constraintTop_creator="1"
-        app:layout_constraintHorizontal_bias="0.0" />
+        />
 
 
-</android.support.constraint.ConstraintLayout>
+</GridLayout>

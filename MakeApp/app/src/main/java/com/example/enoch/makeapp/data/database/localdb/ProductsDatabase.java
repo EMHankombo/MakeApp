@@ -1,64 +1,70 @@
-package com.example.enoch.makeapp.data.model;
+package com.example.enoch.makeapp.data.database.localdb;
+
+import io.realm.RealmObject;
 
 /**
- * Created by mainza1992 on 19/10/2017.
+ * Created by mainza1992 on 29/10/2017.
  */
 
-import com.google.gson.annotations.Expose;
-import com.google.gson.annotations.SerializedName;
+public class ProductsDatabase extends RealmObject{
 
-import java.util.List;
 
-public class ItemDisplayModel {
 
-    @SerializedName("id")
-    @Expose
     private Integer id;
-    @SerializedName("brand")
-    @Expose
+
     private String brand;
-    @SerializedName("name")
-    @Expose
+
     private String name;
-    @SerializedName("price")
-    @Expose
+
     private String price;
-    @SerializedName("image_link")
-    @Expose
+
     private String imageLink;
-    @SerializedName("product_link")
-    @Expose
+
     private String productLink;
-    @SerializedName("website_link")
-    @Expose
+
     private String websiteLink;
-    @SerializedName("description")
-    @Expose
+
     private String description;
-    @SerializedName("rating")
-    @Expose
+
     private String rating;
-//    @SerializedName("category")
-//    @Expose
-//    private Object category;
-    @SerializedName("product_type")
-    @Expose
+
+    private String category;
+
     private String productType;
-//    @SerializedName("tag_list")
-//    @Expose
-//    private List<Object> tagList = null;
-    @SerializedName("created_at")
-    @Expose
+
+   // private List<Object> tagList = null;
+
     private String createdAt;
-    @SerializedName("updated_at")
-    @Expose
+
     private String updatedAt;
-    @SerializedName("product_api_url")
-    @Expose
+
     private String productApiUrl;
-    @SerializedName("product_colors")
-    @Expose
-    private List<ProductColor> productColors = null;
+
+
+    public ProductsDatabase() {
+    }
+
+    public ProductsDatabase(Integer id, String brand, String name, String price,
+                            String imageLink, String productLink, String websiteLink,
+                            String description, String rating, String category, String productType,
+                            String createdAt, String updatedAt, String productApiUrl) {
+        this.id = id;
+        this.brand = brand;
+        this.name = name;
+        this.price = price;
+        this.imageLink = imageLink;
+        this.productLink = productLink;
+        this.websiteLink = websiteLink;
+        this.description = description;
+        this.rating = rating;
+        this.category = category;
+        this.productType = productType;
+        //this.tagList = tagList;
+        this.createdAt = createdAt;
+        this.updatedAt = updatedAt;
+        this.productApiUrl = productApiUrl;
+    }
+
 
     public Integer getId() {
         return id;
@@ -132,13 +138,13 @@ public class ItemDisplayModel {
         this.rating = rating;
     }
 
-//    public Object getCategory() {
-//        return category;
-//    }
-//
-//    public void setCategory(Object category) {
-//        this.category = category;
-//    }
+    public String getCategory() {
+        return category;
+    }
+
+    public void setCategory(String category) {
+        this.category = category;
+    }
 
     public String getProductType() {
         return productType;
@@ -179,13 +185,4 @@ public class ItemDisplayModel {
     public void setProductApiUrl(String productApiUrl) {
         this.productApiUrl = productApiUrl;
     }
-
-    public List<ProductColor> getProductColors() {
-        return productColors;
-    }
-
-    public void setProductColors(List<ProductColor> productColors) {
-        this.productColors = productColors;
-    }
-
 }

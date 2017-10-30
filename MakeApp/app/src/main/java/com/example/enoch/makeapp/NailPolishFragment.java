@@ -10,17 +10,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.enoch.makeapp.data.model.ProductModel;
-import com.example.enoch.makeapp.data.network.AppDataManager;
+import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
+import com.example.enoch.makeapp.di.component.IActivityComponent;
+import com.example.enoch.makeapp.di.module.ActivityModule;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 import com.example.enoch.makeapp.ui.nailPolishList.INailPolishListMvpView;
 import com.example.enoch.makeapp.ui.nailPolishList.NailPolishListPresenter;
-import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.disposables.CompositeDisposable;
+
+import static com.example.enoch.makeapp.MyApp.getApplication;
 
 
 /**
@@ -28,10 +32,17 @@ import io.reactivex.disposables.CompositeDisposable;
  */
 public class NailPolishFragment extends BaseFragment implements INailPolishListMvpView{
     //
+    IActivityComponent iActivityComponent;
+
+    public IActivityComponent getiActivityComponent() {
+        return iActivityComponent;
+    }
 
      @BindView(R.id.recyclerNail) RecyclerView recyclerView;
 
-    private NailPolishListPresenter<INailPolishListMvpView> nailPolishListMvpViewNailPolishListPresenter;
+    @Inject
+    NailPolishListPresenter<INailPolishListMvpView> nailPolishListMvpViewNailPolishListPresenter;
+
     public NailPolishFragment() {
         // Required empty public constructor
     }
@@ -48,19 +59,27 @@ public class NailPolishFragment extends BaseFragment implements INailPolishListM
 
         ButterKnife.bind(this,view);
 
+        setRetainInstance(true);
+
+        initializeRecycler(view);
+        initialiseDagger();
+
         return view;
     }
 
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
 
-        initializeRecycler(view);
 
-        nailPolishListMvpViewNailPolishListPresenter = new NailPolishListPresenter<>(new AppDataManager(),new AppSchedulerProvider(),
-                new CompositeDisposable());
+
+
+       /* nailPolishListMvpViewNailPolishListPresenter = new NailPolishListPresenter<>(new AppDataManager(),new AppSchedulerProvider(),
+                new CompositeDisposable()); */
+
         nailPolishListMvpViewNailPolishListPresenter.onViewPrepared();
         nailPolishListMvpViewNailPolishListPresenter.onAttach(this);
+
+        super.onViewCreated(view, savedInstanceState);
     }
 
     public void initializeRecycler(View view){
@@ -68,6 +87,15 @@ public class NailPolishFragment extends BaseFragment implements INailPolishListM
        // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerNail);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
+    }
+
+    private void initialiseDagger() {
+        iActivityComponent = DaggerIActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .iApplicationComponent(((MyApp) getApplication()).getiApplicationComponent())
+                .build();
+
+        getiActivityComponent().inject(this);
     }
 
     @Override

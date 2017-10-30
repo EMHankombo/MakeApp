@@ -38,15 +38,15 @@ public class BrandModel {
     @SerializedName("rating")
     @Expose
     private String rating;
-    @SerializedName("category")
-    @Expose
-    private Object category;
+   // @SerializedName("category")
+    //@Expose
+   // private Object category;
     @SerializedName("product_type")
     @Expose
     private String productType;
-    @SerializedName("tag_list")
-    @Expose
-    private List<Object> tagList = null;
+//    @SerializedName("tag_list")
+//    @Expose
+//    private List<Object> tagList = null;
     @SerializedName("created_at")
     @Expose
     private String createdAt;
@@ -132,13 +132,13 @@ public class BrandModel {
         this.rating = rating;
     }
 
-    public Object getCategory() {
-        return category;
-    }
-
-    public void setCategory(Object category) {
-        this.category = category;
-    }
+//    public Object getCategory() {
+//        return category;
+//    }
+//
+//    public void setCategory(Object category) {
+//        this.category = category;
+//    }
 
     public String getProductType() {
         return productType;
@@ -148,13 +148,13 @@ public class BrandModel {
         this.productType = productType;
     }
 
-    public List<Object> getTagList() {
-        return tagList;
-    }
-
-    public void setTagList(List<Object> tagList) {
-        this.tagList = tagList;
-    }
+//    public List<Object> getTagList() {
+//        return tagList;
+//    }
+//
+//    public void setTagList(List<Object> tagList) {
+//        this.tagList = tagList;
+//    }
 
     public String getCreatedAt() {
         return createdAt;

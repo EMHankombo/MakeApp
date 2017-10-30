@@ -12,17 +12,21 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.enoch.makeapp.data.model.BrandModel;
-import com.example.enoch.makeapp.data.network.AppDataManager;
+import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
+import com.example.enoch.makeapp.di.component.IActivityComponent;
+import com.example.enoch.makeapp.di.module.ActivityModule;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 import com.example.enoch.makeapp.ui.brandList.BrandsListPresenter;
 import com.example.enoch.makeapp.ui.brandList.IBrandListMvpView;
-import com.example.enoch.makeapp.ui.utils.rx.AppSchedulerProvider;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
-import io.reactivex.disposables.CompositeDisposable;
+
+import static com.example.enoch.makeapp.MyApp.getApplication;
 
 
 /**
@@ -32,10 +36,17 @@ public class BrandFragment extends BaseFragment implements IBrandListMvpView{
 
     @BindView(R.id.recyclerViewBrand) RecyclerView recyclerView;
 
-    private BrandsListPresenter<IBrandListMvpView> brandListMvpViewBrandsListPresenter;
 
 
 
+    IActivityComponent iActivityComponent;
+
+    public IActivityComponent getiActivityComponent() {
+        return iActivityComponent;
+    }
+
+    @Inject
+    BrandsListPresenter<IBrandListMvpView> brandListMvpViewBrandsListPresenter;
 
     public BrandFragment() {
         // Required empty public constructor
@@ -49,12 +60,15 @@ public class BrandFragment extends BaseFragment implements IBrandListMvpView{
         View view = inflater.inflate(R.layout.fragment_brand, container, false);
 
         ButterKnife.bind(this,view);
-
+        initializeRecycler(view);
+        initialiseDagger();
 
         String brand = getArguments().getString("brand");
 
-        brandListMvpViewBrandsListPresenter = new BrandsListPresenter<>(new AppDataManager(),new AppSchedulerProvider()
+       /* brandListMvpViewBrandsListPresenter = new BrandsListPresenter<>(new AppDataManager(),new AppSchedulerProvider()
                 ,new CompositeDisposable());
+                */
+
         brandListMvpViewBrandsListPresenter.onViewPrepared(brand);
         brandListMvpViewBrandsListPresenter.onAttach(this);
 
@@ -67,7 +81,7 @@ public class BrandFragment extends BaseFragment implements IBrandListMvpView{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        initializeRecycler(view);
+
     }
 
 
@@ -78,6 +92,16 @@ public class BrandFragment extends BaseFragment implements IBrandListMvpView{
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
     }
+
+    private void initialiseDagger() {
+        iActivityComponent = DaggerIActivityComponent.builder()
+                .activityModule(new ActivityModule(this))
+                .iApplicationComponent(((MyApp) getApplication()).getiApplicationComponent())
+                .build();
+
+        getiActivityComponent().inject(this);
+    }
+
 
 
 

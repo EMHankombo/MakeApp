@@ -28,6 +28,7 @@ import com.example.enoch.makeapp.R;
 import com.example.enoch.makeapp.ui.utils.CommonUtils;
 import com.example.enoch.makeapp.ui.utils.NetworkUtils;
 
+import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
 
@@ -52,7 +53,7 @@ public abstract class BaseFragment extends Fragment implements com.example.enoch
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         setRetainInstance(true);
-        //unbinder = ButterKnife.bind(this, view);
+        unbinder = ButterKnife.bind(this, view);
     }
 
     @Override
@@ -120,6 +121,6 @@ public abstract class BaseFragment extends Fragment implements com.example.enoch
     @Override
     public void onDestroyView() {
         super.onDestroyView();
-        //unbinder.unbind();
+        unbinder.unbind();
     }
 }
