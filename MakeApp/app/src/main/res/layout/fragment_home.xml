@@ -21,7 +21,9 @@
                 android:layout_columnWeight="1"
                 android:layout_row="0"
                 android:layout_rowWeight="1"
-                android:text="Lipstick" />
+                android:text="@string/lipstick"
+                android:layout_margin="3dp"
+                android:background="@drawable/prod_1190880_1_613x613"/>
 
     <Button
         android:id="@+id/mascara"
@@ -31,7 +33,9 @@
         android:layout_columnWeight="1"
         android:layout_row="0"
         android:layout_rowWeight="1"
-        android:text="Mascara" />
+        android:text="@string/mascara"
+        android:layout_margin="3dp"
+        android:background="@drawable/mascara"/>
 
     <Button
         android:id="@+id/nailPolish"
@@ -41,7 +45,10 @@
         android:layout_columnWeight="1"
         android:layout_row="1"
         android:layout_rowWeight="1"
-        android:text="Nail Polish" />
+        android:text="@string/nail_polish"
+        android:layout_margin="3dp"
+        android:background="@drawable/nail"
+        />
 
             <Button
                 android:id="@+id/foundation"
@@ -51,7 +58,9 @@
                 android:layout_columnWeight="1"
                 android:layout_row="1"
                 android:layout_rowWeight="1"
-                android:text="Foundation" />
+                android:text="@string/foundation"
+                android:layout_margin="3dp"
+                android:background="@drawable/foundation"/>
 
 
 </GridLayout>

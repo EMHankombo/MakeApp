@@ -1,5 +1,6 @@
 package com.example.enoch.makeapp.data.database.localdb.controller;
 
+import com.example.enoch.makeapp.data.database.localdb.IndividualItemDatabase;
 import com.example.enoch.makeapp.data.database.localdb.ProductsDatabase;
 
 import java.util.ArrayList;
@@ -43,6 +44,33 @@ public class RealmController {
     }
 
 
+    public void saveIndividualItem(final IndividualItemDatabase individualItemDatabase){
+        realm.executeTransaction(new Realm.Transaction() {
+            @Override
+            public void execute(Realm realm) {
+                realm.copyToRealm(individualItemDatabase);
+            }
+        });
+
+    }
+
+    public ArrayList<IndividualItemDatabase> getAllIndividualItem(){
+        ArrayList<IndividualItemDatabase> individualItemDatabaseArrayList = new ArrayList<>();
+
+        RealmResults<IndividualItemDatabase> databaseRealmResults = realm.where(IndividualItemDatabase.class).findAll();
+
+        for(IndividualItemDatabase individualItemDatabase: databaseRealmResults){
+            individualItemDatabaseArrayList.add(individualItemDatabase);
+        }
+         return  individualItemDatabaseArrayList;
+    }
+
+    public IndividualItemDatabase getOneItem(int id){
+
+        IndividualItemDatabase individualItemDatabase = realm.where(IndividualItemDatabase.class).equalTo("id",id).findFirst();
+
+        return individualItemDatabase;
+    }
 
 
     public void deleteDatabase() {

@@ -7,18 +7,18 @@
 
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
-        android:layout_height="300dp">
+        android:layout_height="500dp">
 
 
         <RelativeLayout
-            android:layout_width="379dp"
-            android:layout_height="300dp">>
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">>
 
 
             <ImageView
                 android:id="@+id/imageViewItem"
                 android:layout_width="130dp"
-                android:layout_height="match_parent"
+                android:layout_height="200dp"
                 android:layout_alignParentLeft="true"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentTop="true"
@@ -31,12 +31,11 @@
                 android:id="@+id/itemDesc"
                 android:layout_width="190dp"
                 android:layout_height="85dp"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="13dp"
+                android:layout_below="@+id/itemPrice"
                 android:layout_marginLeft="14dp"
                 android:layout_marginStart="14dp"
+                android:layout_marginTop="19dp"
                 android:layout_toEndOf="@+id/imageViewItem"
-                android:layout_toRightOf="@+id/imageViewItem"
                 android:text="TextView" />
 
             <TextView
@@ -54,13 +53,10 @@
             <TextView
                 android:id="@+id/itemName"
                 android:layout_width="160dp"
-                android:layout_height="55dp"
-                android:layout_alignEnd="@+id/itemBrand"
-                android:layout_alignLeft="@+id/itemBrand"
-                android:layout_alignRight="@+id/itemBrand"
+                android:layout_height="50dp"
                 android:layout_alignStart="@+id/itemBrand"
                 android:layout_below="@+id/itemBrand"
-                android:layout_marginTop="33dp"
+                android:layout_marginTop="12dp"
                 android:text="TextView" />
 
             <TextView
@@ -73,8 +69,19 @@
                 android:layout_marginTop="17dp"
                 android:text="TextView" />
 
+            <Button
+                android:id="@+id/buyButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/itemDesc"
+                android:layout_below="@+id/itemDesc"
+                android:layout_marginStart="19dp"
+                android:layout_marginTop="53dp"
+                android:text="@string/buy" />
+
 
         </RelativeLayout>
+
     </android.support.v7.widget.CardView>
 
 

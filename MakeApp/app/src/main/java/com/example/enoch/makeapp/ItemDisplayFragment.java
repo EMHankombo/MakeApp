@@ -11,6 +11,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.enoch.makeapp.data.database.localdb.IndividualItemDatabase;
+import com.example.enoch.makeapp.data.database.localdb.controller.RealmController;
 import com.example.enoch.makeapp.data.model.ItemDisplayModel;
 import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
 import com.example.enoch.makeapp.di.component.IActivityComponent;
@@ -23,6 +25,7 @@ import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import io.realm.Realm;
 
 import static com.example.enoch.makeapp.MyApp.getApplication;
 
@@ -38,6 +41,10 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
         return iActivityComponent;
     }
 
+    Realm realm;
+    RealmController realmController;
+    IndividualItemDatabase individualItemDatabase;
+
     @BindView(R.id.recyclerItem) RecyclerView recyclerView;
 
     @Inject
@@ -52,6 +59,9 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
+        realm= Realm.getDefaultInstance();
+        realmController= new RealmController(realm);
         return inflater.inflate(R.layout.fragment_item, container, false);
 
 
@@ -98,6 +108,14 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
     @Override
     public void onClickSuccess(ItemDisplayModel itemDisplayModel) {
 
+        individualItemDatabase = new IndividualItemDatabase();
+
+        individualItemDatabase.setBrand(itemDisplayModel.getBrand());
+        individualItemDatabase.setName(itemDisplayModel.getName());
+        individualItemDatabase.setPrice(itemDisplayModel.getPrice());
+        individualItemDatabase.setDescription(itemDisplayModel.getDescription());
+
+        realmController.saveIndividualItem(individualItemDatabase);
 
         Log.i("itemDis",itemDisplayModel.getBrand());
 

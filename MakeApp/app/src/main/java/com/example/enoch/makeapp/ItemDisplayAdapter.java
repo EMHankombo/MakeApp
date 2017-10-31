@@ -1,10 +1,13 @@
 package com.example.enoch.makeapp;
 
 import android.content.Context;
+import android.net.Uri;
+import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -52,7 +55,21 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
                 .centerCrop()
                 .into(holder.image);
 
+        holder.button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+                String url = itemDisplayModel.getProductLink();
+                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                CustomTabsIntent customTabsIntent = builder.build();
+
+                builder.setToolbarColor(applicationContext.getResources().getColor(R.color.colorAccent));
+
+                builder.setStartAnimations(applicationContext, R.anim.slide_in_right, R.anim.slide_out_left);
+                builder.setExitAnimations(applicationContext, R.anim.slide_out_left, R.anim.slide_in_right);
+                customTabsIntent.launchUrl(applicationContext, Uri.parse(url));
+            }
+        });
 
     }
 
@@ -66,6 +83,7 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
     public class ItemViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView brand,name,price,description;
+        Button button;
         public ItemViewHolder(View itemView) {
             super(itemView);
 
@@ -78,6 +96,8 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
             price = (TextView)itemView.findViewById(R.id.itemPrice);
 
             description = (TextView)itemView.findViewById(R.id.itemDesc);
+
+            button = (Button) itemView.findViewById(R.id.buyButton);
         }
 
     }

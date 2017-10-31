@@ -27,6 +27,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
     }
 
 
+
     @BindView(R.id.lip) Button lipstick;
     @BindView(R.id.mascara) Button mascara;
     @BindView(R.id.nailPolish) Button nailPolish;
@@ -45,11 +46,13 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
        /** lipstick =(Button) view.findViewById(R.id.lip);
-        mascara = (Button) view.findViewById(R.id.mascara);
+        my_mascara_bg = (Button) view.findViewById(R.id.my_mascara_bg);
         nailPolish = (Button) view.findViewById(R.id.nailPolish);
         foundation = (Button) view.findViewById(R.id.foundation); **/
 
         ButterKnife.bind(this,view);
+
+
 
 
 
@@ -87,7 +90,7 @@ public class HomeFragment extends BaseFragment implements View.OnClickListener {
             }
         });
 
-       // mascara.setOnClickListener(this);
+       // my_mascara_bg.setOnClickListener(this);
        // nailPolish.setOnClickListener(this);
        // foundation.setOnClickListener(this);
         return view;

@@ -12,4 +12,9 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="mascara">Mascara</string>
+    <string name="lipstick">Lipstick</string>
+    <string name="nail_polish">Nail Polish</string>
+    <string name="foundation">Foundation</string>
+    <string name="buy">Buy</string>
 </resources>

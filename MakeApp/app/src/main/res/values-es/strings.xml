@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Maquillaje</string>
+    <string name="title_home">Casa</string>
+    <string name="title_brand">Marcas</string>
+
+    <string name="mascara">Máscara</string>
+    <string name="lipstick">Lápiz labial</string>
+    <string name="nail_polish">Esmalte de uñas</string>
+    <string name="foundation">Fundación</string>
+    <string name="buy">Comprar</string>
+</resources>
