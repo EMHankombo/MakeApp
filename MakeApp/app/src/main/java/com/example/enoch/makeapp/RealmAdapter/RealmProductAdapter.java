@@ -47,6 +47,8 @@ public class RealmProductAdapter extends RecyclerView.Adapter<RealmProductAdapte
         holder.name.setText(productsDatabase.get(position).getName());
         holder.price.setText("$" + productsDatabase.get(position).getPrice());
 
+        holder.bind(productsDatabase.get(position), realmClickListener);
+
     }
 
     @Override

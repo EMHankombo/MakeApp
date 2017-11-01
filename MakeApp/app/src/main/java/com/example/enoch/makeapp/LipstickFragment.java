@@ -25,6 +25,7 @@ import com.example.enoch.makeapp.di.module.ActivityModule;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 import com.example.enoch.makeapp.ui.lipstickList.ILipstickMvpView;
 import com.example.enoch.makeapp.ui.lipstickList.LipStickPresenter;
+import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -51,12 +52,17 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
     @BindView(R.id.swipeToRefreshLipstick) SwipeRefreshLayout swipeRefreshLayout;
 
+ ShimmerFrameLayout shimmerFrameLayout;
+
     @Inject
     LipStickPresenter<ILipstickMvpView> lipstickMvpViewLipStickPresenter;
 
     Realm realm;
     RealmController realmController;
     ProductsDatabase productsDatabase;
+    MakeAppAdapter makeAppAdapter;
+
+
 
     public LipstickFragment() {
         // Required empty public constructor
@@ -71,8 +77,13 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
         realmController= new RealmController(realm);
 
 
-        return inflater.inflate(R.layout.fragment_lipstick, container, false);
+        View view = inflater.inflate(R.layout.fragment_lipstick, container, false);
 
+
+
+
+
+        return  view;
 
 
     }
@@ -82,6 +93,8 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
         ButterKnife.bind(this,view);
+
+
 
         initializeRecycler(view);
         initialiseDagger();
@@ -98,6 +111,7 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
             public void onRefresh() {
                 refreshContent();
 
+                isNetworkConnected();
             }
         });
 
@@ -138,10 +152,13 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
         //Log.i("data",productModel.get(1).getName().toString());
 
+
+
         for(ProductModel resultForResult: productModel){
 
             productsDatabase = new ProductsDatabase();
 
+            productsDatabase.setId(resultForResult.getId());
             productsDatabase.setBrand(resultForResult.getBrand());
             productsDatabase.setName(resultForResult.getName());
             productsDatabase.setPrice(resultForResult.getPrice());
@@ -152,12 +169,11 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
 
             realmController.saveLipStick(productsDatabase);
-            Log.i("realm",productsDatabase.getName());
+
+           // Log.i("realm", String.valueOf(productsDatabase.getId()));
         }
 
-
-
-        recyclerView.setAdapter(new MakeAppAdapter(productModel, R.layout.row, getActivity().getApplicationContext(), new onClickListener() {
+        makeAppAdapter = new MakeAppAdapter(productModel,R.layout.row, getActivity().getApplicationContext(), new onClickListener() {
             @Override
             public void onItemClick(ProductModel productModel) {
 
@@ -176,7 +192,12 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
                         .replace(R.id.content,itemFragment).addToBackStack(null).commit();
             }
 
-    }));
+        });
+
+
+        recyclerView.setAdapter(makeAppAdapter);
+
+
     }
 
 
@@ -205,13 +226,19 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
                 @Override
                 public void onItemClick(ProductsDatabase productsDatabase) {
 
+
+                    Log.i("noConection","clicked" + productsDatabase.getName());
+                    Log.i("noConection","clicked" + productsDatabase.getBrand());
+                    Log.i("noConection","clicked" + productsDatabase.getPrice());
+                    Log.i("noConection","clicked" + productsDatabase.getId());
+
                     int id = productsDatabase.getId();
 
                     Bundle args = new Bundle();
 
                     args.putInt("id",id);
 
-                    Log.i("clickTest","clicked" + productsDatabase.getName());
+                    Log.i("noConection","clicked" + productsDatabase.getName());
                     ItemDisplayFragment itemFragment = new ItemDisplayFragment();
 
                     itemFragment.setArguments(args);

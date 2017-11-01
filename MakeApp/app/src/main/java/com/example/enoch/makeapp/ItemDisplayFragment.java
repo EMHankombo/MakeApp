@@ -1,6 +1,9 @@
 package com.example.enoch.makeapp;
 
 
+import android.content.Context;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -11,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.enoch.makeapp.RealmAdapter.RealmIndividualAdapter;
 import com.example.enoch.makeapp.data.database.localdb.IndividualItemDatabase;
 import com.example.enoch.makeapp.data.database.localdb.controller.RealmController;
 import com.example.enoch.makeapp.data.model.ItemDisplayModel;
@@ -45,6 +49,8 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
     RealmController realmController;
     IndividualItemDatabase individualItemDatabase;
 
+
+
     @BindView(R.id.recyclerItem) RecyclerView recyclerView;
 
     @Inject
@@ -76,6 +82,7 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
         initialiseRecycler(view);
 
         initialiseDagger();
+        isNetworkConnected();
 
         int id = getArguments().getInt("id");
 
@@ -110,6 +117,7 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
 
         individualItemDatabase = new IndividualItemDatabase();
 
+        individualItemDatabase.setId(itemDisplayModel.getId());
         individualItemDatabase.setBrand(itemDisplayModel.getBrand());
         individualItemDatabase.setName(itemDisplayModel.getName());
         individualItemDatabase.setPrice(itemDisplayModel.getPrice());
@@ -117,11 +125,33 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
 
         realmController.saveIndividualItem(individualItemDatabase);
 
-        Log.i("itemDis",itemDisplayModel.getBrand());
+        Log.i("itemDis",individualItemDatabase.getBrand());
 
         recyclerView.setAdapter(new ItemDisplayAdapter(itemDisplayModel,R.layout.row_item_display,getActivity().getApplicationContext()));
 
     }
 
 
-}
+
+
+    public boolean isNetworkConnected() {
+
+
+        // get Connectivity Manager to get network status
+        ConnectivityManager connMgr = (ConnectivityManager)
+                getActivity().getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+            Log.i("Connection test","passed");
+            return true; //we have a connection
+        } else {
+
+            individualItemDatabase = realmController.getOneItem(getArguments().getInt("id"));
+            recyclerView.setAdapter(new RealmIndividualAdapter(individualItemDatabase, R.layout.row_item_display, getActivity().getApplicationContext()));
+        }
+            return false; // no connection!
+        }
+    }
+
+

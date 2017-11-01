@@ -7,6 +7,11 @@
     android:weightSum="1">
 
 
+    <com.facebook.shimmer.ShimmerFrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/shimmer">
+
     <android.support.v7.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,4 +68,5 @@
 
     </android.support.v7.widget.CardView>
 
+    </com.facebook.shimmer.ShimmerFrameLayout>
 </LinearLayout>

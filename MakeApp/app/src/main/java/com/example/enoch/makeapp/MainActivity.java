@@ -13,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
 
     private FragmentManager fragmentManager;
 
+
+
+
+
     public static Bundle bundle = new Bundle();
 
     private BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
@@ -50,6 +54,9 @@ public class MainActivity extends AppCompatActivity {
 
         //first fragment that will load up
         fragmentTransaction.replace(R.id.content,new HomeFragment()).commit();
+
+
     }
+
 
 }

@@ -60,6 +60,16 @@ public class ProductModel {
     @Expose
     private List<ProductColor> productColors = null;
 
+    private boolean showShimmer;
+
+    public boolean isShowShimmer() {
+        return showShimmer;
+    }
+
+    public void setShowShimmer(boolean showShimmer) {
+        this.showShimmer = showShimmer;
+    }
+
     public Integer getId() {
         return id;
     }

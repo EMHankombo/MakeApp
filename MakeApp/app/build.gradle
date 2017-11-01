@@ -79,6 +79,8 @@ dependencies {
 
     compile 'com.android.support:customtabs:26.+'
 
+    compile 'com.facebook.shimmer:shimmer:0.1.0@aar'
+
 
 
 

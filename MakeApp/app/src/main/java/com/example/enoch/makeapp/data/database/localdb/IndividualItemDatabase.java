@@ -8,7 +8,7 @@ import io.realm.RealmObject;
 
 public class IndividualItemDatabase extends RealmObject{
 
-    private Integer id;
+    private int id;
 
     private String brand;
 
@@ -62,11 +62,11 @@ public class IndividualItemDatabase extends RealmObject{
         this.productApiUrl = productApiUrl;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 

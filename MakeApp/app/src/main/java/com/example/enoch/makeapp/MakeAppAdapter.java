@@ -44,6 +44,8 @@ public class MakeAppAdapter extends RecyclerView.Adapter<MakeAppAdapter.MyViewHo
 
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
+
+
         holder.brand.setText(productModels.get(position).getBrand());
         holder.name.setText(productModels.get(position).getName());
         holder.price.setText("$" + productModels.get(position).getPrice());
@@ -75,6 +77,7 @@ public class MakeAppAdapter extends RecyclerView.Adapter<MakeAppAdapter.MyViewHo
             brand = (TextView) itemView.findViewById(R.id.brandName);
             name = (TextView) itemView.findViewById(R.id.name);
             price = (TextView) itemView.findViewById(R.id.price);
+
         }
 
 

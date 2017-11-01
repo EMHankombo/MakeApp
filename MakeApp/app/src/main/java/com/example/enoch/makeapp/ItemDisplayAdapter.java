@@ -1,6 +1,7 @@
 package com.example.enoch.makeapp;
 
 import android.content.Context;
+import android.graphics.BitmapFactory;
 import android.net.Uri;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
@@ -63,11 +64,13 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
                 CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
                 CustomTabsIntent customTabsIntent = builder.build();
 
-                builder.setToolbarColor(applicationContext.getResources().getColor(R.color.colorAccent));
+                builder.setToolbarColor(v.getContext().getResources().getColor(R.color.colorAccent));
 
-                builder.setStartAnimations(applicationContext, R.anim.slide_in_right, R.anim.slide_out_left);
-                builder.setExitAnimations(applicationContext, R.anim.slide_out_left, R.anim.slide_in_right);
-                customTabsIntent.launchUrl(applicationContext, Uri.parse(url));
+                builder.setCloseButtonIcon(BitmapFactory.decodeResource(v.getContext().getResources(),R.drawable.ic_arrow_back));
+
+                builder.setStartAnimations(v.getContext(), R.anim.slide_in_right, R.anim.slide_out_left);
+                builder.setExitAnimations(v.getContext(), R.anim.slide_in_left, R.anim.slide_out_right);
+                builder.build().launchUrl(v.getContext(), Uri.parse(url));
             }
         });
 

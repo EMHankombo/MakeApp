@@ -54,16 +54,16 @@ public class RealmController {
 
     }
 
-    public ArrayList<IndividualItemDatabase> getAllIndividualItem(){
-        ArrayList<IndividualItemDatabase> individualItemDatabaseArrayList = new ArrayList<>();
-
-        RealmResults<IndividualItemDatabase> databaseRealmResults = realm.where(IndividualItemDatabase.class).findAll();
-
-        for(IndividualItemDatabase individualItemDatabase: databaseRealmResults){
-            individualItemDatabaseArrayList.add(individualItemDatabase);
-        }
-         return  individualItemDatabaseArrayList;
-    }
+//    public ArrayList<IndividualItemDatabase> getAllIndividualItem(){
+//        ArrayList<IndividualItemDatabase> individualItemDatabaseArrayList = new ArrayList<>();
+//
+//        RealmResults<IndividualItemDatabase> databaseRealmResults = realm.where(IndividualItemDatabase.class).findAll();
+//
+//        for(IndividualItemDatabase individualItemDatabase: databaseRealmResults){
+//            individualItemDatabaseArrayList.add(individualItemDatabase);
+//        }
+//         return  individualItemDatabaseArrayList;
+//    }
 
     public IndividualItemDatabase getOneItem(int id){
 
