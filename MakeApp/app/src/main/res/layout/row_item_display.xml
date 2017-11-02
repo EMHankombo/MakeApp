@@ -31,43 +31,29 @@
                 android:id="@+id/itemDesc"
                 android:layout_width="190dp"
                 android:layout_height="85dp"
-                android:layout_below="@+id/itemPrice"
+                android:layout_marginEnd="21dp"
                 android:layout_marginLeft="14dp"
-                android:layout_marginStart="14dp"
-                android:layout_marginTop="19dp"
-                android:layout_toEndOf="@+id/imageViewItem"
-                android:text="TextView" />
-
-            <TextView
-                android:id="@+id/itemBrand"
-                android:layout_width="wrap_content"
-                android:layout_height="25dp"
-                android:layout_alignEnd="@+id/itemDesc"
-                android:layout_alignLeft="@+id/itemDesc"
-                android:layout_alignRight="@+id/itemDesc"
-                android:layout_alignStart="@+id/itemDesc"
-                android:layout_alignTop="@+id/imageViewItem"
-                android:layout_marginTop="11dp"
-                android:text="TextView" />
+                android:layout_marginTop="27dp"
+                android:text="TextView"
+                android:layout_below="@+id/itemPrice"
+                android:layout_alignParentEnd="true" />
 
             <TextView
                 android:id="@+id/itemName"
                 android:layout_width="160dp"
                 android:layout_height="50dp"
-                android:layout_alignStart="@+id/itemBrand"
-                android:layout_below="@+id/itemBrand"
-                android:layout_marginTop="12dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_alignTop="@+id/imageViewItem"
+                android:layout_alignStart="@+id/itemPrice" />
 
             <TextView
                 android:id="@+id/itemPrice"
                 android:layout_width="65dp"
                 android:layout_height="20dp"
-                android:layout_alignLeft="@+id/itemName"
-                android:layout_alignStart="@+id/itemName"
-                android:layout_below="@+id/itemName"
-                android:layout_marginTop="17dp"
-                android:text="TextView" />
+                android:text="TextView"
+                android:layout_marginTop="30dp"
+                android:layout_below="@+id/ratingIndividual"
+                android:layout_alignStart="@+id/itemDesc" />
 
             <Button
                 android:id="@+id/buyButton"
@@ -78,6 +64,24 @@
                 android:layout_marginStart="19dp"
                 android:layout_marginTop="53dp"
                 android:text="@string/buy" />
+
+            <TextView
+                android:id="@+id/ratingIndividual"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignStart="@+id/itemName"
+                android:layout_below="@+id/itemName"
+                android:layout_marginTop="15dp"
+                android:text="@string/rating" />
+
+            <RatingBar
+                android:id="@+id/ratingBar2"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignTop="@+id/ratingIndividual"
+                android:layout_marginStart="11dp"
+                android:layout_toEndOf="@+id/ratingIndividual" />
 
 
         </RelativeLayout>

@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.enoch.makeapp.data.model.BrandModel;
 import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
 import com.example.enoch.makeapp.di.component.IActivityComponent;
@@ -60,14 +61,18 @@ public class BrandFragment extends BaseFragment implements IBrandListMvpView{
         View view = inflater.inflate(R.layout.fragment_brand, container, false);
 
         ButterKnife.bind(this,view);
-        initializeRecycler(view);
-        initialiseDagger();
 
         String brand = getArguments().getString("brand");
+
+        ShimmerRecyclerView shimmerRecycler = (ShimmerRecyclerView) view.findViewById(R.id.recyclerViewBrand);
+        shimmerRecycler.showShimmerAdapter();
 
        /* brandListMvpViewBrandsListPresenter = new BrandsListPresenter<>(new AppDataManager(),new AppSchedulerProvider()
                 ,new CompositeDisposable());
                 */
+
+        initializeRecycler(view);
+        initialiseDagger();
 
         brandListMvpViewBrandsListPresenter.onViewPrepared(brand);
         brandListMvpViewBrandsListPresenter.onAttach(this);
@@ -80,6 +85,8 @@ public class BrandFragment extends BaseFragment implements IBrandListMvpView{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+
 
 
     }

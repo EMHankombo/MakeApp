@@ -14,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.enoch.makeapp.RealmAdapter.RealmIndividualAdapter;
 import com.example.enoch.makeapp.data.database.localdb.IndividualItemDatabase;
 import com.example.enoch.makeapp.data.database.localdb.controller.RealmController;
@@ -65,11 +66,14 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-
+        View view = inflater.inflate(R.layout.fragment_item, container, false);
         realm= Realm.getDefaultInstance();
         realmController= new RealmController(realm);
-        return inflater.inflate(R.layout.fragment_item, container, false);
 
+        ShimmerRecyclerView shimmerRecycler = (ShimmerRecyclerView) view.findViewById(R.id.recyclerItem);
+        shimmerRecycler.showShimmerAdapter();
+
+        return view;
 
     }
 
@@ -98,7 +102,7 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
 
     public void initialiseRecycler(View view){
 
-        //recyclerView = (RecyclerView)view.findViewById(R.id.recyclerItem);
+        //shimmerRecyclerView = (RecyclerView)view.findViewById(R.id.recyclerItem);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
     }
@@ -122,6 +126,13 @@ public class ItemDisplayFragment extends BaseFragment implements IItemDisplayMvp
         individualItemDatabase.setName(itemDisplayModel.getName());
         individualItemDatabase.setPrice(itemDisplayModel.getPrice());
         individualItemDatabase.setDescription(itemDisplayModel.getDescription());
+
+
+        if(itemDisplayModel.getRating()!= null) {
+            individualItemDatabase.setRating(Double.parseDouble(itemDisplayModel.getRating()));
+        } else {
+            individualItemDatabase.setRating(0.0);
+        }
 
         realmController.saveIndividualItem(individualItemDatabase);
 

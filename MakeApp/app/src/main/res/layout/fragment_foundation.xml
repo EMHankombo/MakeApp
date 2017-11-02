@@ -11,12 +11,12 @@
         android:layout_height="match_parent"
         >
 
-    <android.support.v7.widget.RecyclerView
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/recyclerFoundation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-    </android.support.v7.widget.RecyclerView>
+    </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
 
 </android.support.v4.widget.SwipeRefreshLayout>
 </FrameLayout>

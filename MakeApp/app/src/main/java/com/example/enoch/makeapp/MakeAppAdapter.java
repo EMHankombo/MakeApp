@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.enoch.makeapp.data.model.ProductModel;
@@ -46,9 +47,15 @@ public class MakeAppAdapter extends RecyclerView.Adapter<MakeAppAdapter.MyViewHo
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
 
-        holder.brand.setText(productModels.get(position).getBrand());
+//        holder.brand.setText(productModels.get(position).getBrand());
         holder.name.setText(productModels.get(position).getName());
-        holder.price.setText("$" + productModels.get(position).getPrice());
+        holder.price.setText("£" + productModels.get(position).getPrice());
+
+        if((productModels.get(position).getRating())!= null) {
+            holder.bar.setRating(Float.parseFloat(productModels.get(position).getRating()));
+        }else {
+            holder.bar.setRating(Float.parseFloat("0"));
+        }
 
         Picasso.with(applicationContext)
                 .load(productModels.get(position).getImageLink())
@@ -69,14 +76,16 @@ public class MakeAppAdapter extends RecyclerView.Adapter<MakeAppAdapter.MyViewHo
 
         ImageView image;
         TextView brand, name, price;
+        RatingBar bar;
 
         public MyViewHolder(View itemView) {
             super(itemView);
 
             image = (ImageView) itemView.findViewById(R.id.image);
-            brand = (TextView) itemView.findViewById(R.id.brandName);
+//            brand = (TextView) itemView.findViewById(R.id.brandName);
             name = (TextView) itemView.findViewById(R.id.name);
             price = (TextView) itemView.findViewById(R.id.price);
+            bar = (RatingBar)itemView.findViewById(R.id.ratingBar);
 
         }
 

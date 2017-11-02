@@ -24,7 +24,7 @@ public class IndividualItemDatabase extends RealmObject{
 
     private String description;
 
-    private String rating;
+    private double rating;
 
     private String category;
 
@@ -42,7 +42,7 @@ public class IndividualItemDatabase extends RealmObject{
     }
 
     public IndividualItemDatabase(Integer id, String brand, String name, String price, String imageLink,
-                                  String productLink, String websiteLink, String description, String rating,
+                                  String productLink, String websiteLink, String description, double rating,
                                   String category, String productType, String createdAt,
                                   String updatedAt, String productApiUrl) {
         this.id = id;
@@ -126,11 +126,11 @@ public class IndividualItemDatabase extends RealmObject{
         this.description = description;
     }
 
-    public String getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 

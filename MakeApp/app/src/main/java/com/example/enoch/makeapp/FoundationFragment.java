@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.enoch.makeapp.data.model.ProductModel;
 import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
 import com.example.enoch.makeapp.di.component.IActivityComponent;
@@ -59,8 +60,10 @@ public class FoundationFragment extends BaseFragment implements IFoundationListM
         View view = inflater.inflate(R.layout.fragment_foundation, container, false);
 
         ButterKnife.bind(this,view);
-        initiiliazieRecycler(view);
-        initialiseDagger();
+
+
+        ShimmerRecyclerView shimmerRecycler = (ShimmerRecyclerView) view.findViewById(R.id.recyclerFoundation);
+        shimmerRecycler.showShimmerAdapter();
         return view;
 
     }
@@ -68,6 +71,8 @@ public class FoundationFragment extends BaseFragment implements IFoundationListM
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
+        initiiliazieRecycler(view);
+        initialiseDagger();
 
 
        /* foundationListMvpViewFoundationListPresenter = new FoundationListPresenter<>(new AppDataManager(),new AppSchedulerProvider(),
@@ -82,7 +87,7 @@ public class FoundationFragment extends BaseFragment implements IFoundationListM
 
     public void initiiliazieRecycler(View view){
 
-       // recyclerView = (RecyclerView)view.findViewById(R.id.recyclerFoundation);
+       // shimmerRecyclerView = (RecyclerView)view.findViewById(R.id.recyclerFoundation);
 
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
     }

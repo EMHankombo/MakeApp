@@ -2,6 +2,8 @@ package com.example.enoch.makeapp;
 
 import android.content.Context;
 import android.graphics.BitmapFactory;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.net.Uri;
 import android.support.customtabs.CustomTabsIntent;
 import android.support.v7.widget.RecyclerView;
@@ -10,7 +12,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.enoch.makeapp.data.model.ItemDisplayModel;
 import com.squareup.picasso.Picasso;
@@ -45,10 +49,18 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
 
 
 
-        holder.brand.setText(itemDisplayModel.getBrand());
+      //  holder.brand.setText(itemDisplayModel.getBrand());
         holder.name.setText(itemDisplayModel.getName());
         holder.price.setText("$"+ itemDisplayModel.getPrice());
         holder.description.setText(itemDisplayModel.getDescription());
+
+        if((itemDisplayModel.getRating())!= null) {
+            holder.bar.setRating(Float.parseFloat(itemDisplayModel.getRating()));
+        }else {
+            holder.bar.setRating(Float.parseFloat("0"));
+        }
+
+
 
         Picasso.with(applicationContext)
                 .load(itemDisplayModel.getImageLink())
@@ -60,17 +72,22 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
             @Override
             public void onClick(View v) {
 
-                String url = itemDisplayModel.getProductLink();
-                CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
-                CustomTabsIntent customTabsIntent = builder.build();
+                if(isNetworkConnected()) {
 
-                builder.setToolbarColor(v.getContext().getResources().getColor(R.color.colorAccent));
+                    String url = itemDisplayModel.getProductLink();
+                    CustomTabsIntent.Builder builder = new CustomTabsIntent.Builder();
+                    CustomTabsIntent customTabsIntent = builder.build();
 
-                builder.setCloseButtonIcon(BitmapFactory.decodeResource(v.getContext().getResources(),R.drawable.ic_arrow_back));
+                    builder.setToolbarColor(v.getContext().getResources().getColor(R.color.colorAccent));
 
-                builder.setStartAnimations(v.getContext(), R.anim.slide_in_right, R.anim.slide_out_left);
-                builder.setExitAnimations(v.getContext(), R.anim.slide_in_left, R.anim.slide_out_right);
-                builder.build().launchUrl(v.getContext(), Uri.parse(url));
+                    builder.setCloseButtonIcon(BitmapFactory.decodeResource(v.getContext().getResources(), R.drawable.ic_arrow_back));
+
+                    builder.setStartAnimations(v.getContext(), R.anim.slide_in_right, R.anim.slide_out_left);
+                    builder.setExitAnimations(v.getContext(), R.anim.slide_in_left, R.anim.slide_out_right);
+
+
+                    builder.build().launchUrl(v.getContext(), Uri.parse(url));
+                } else Toast.makeText(applicationContext,"No internet connection",Toast.LENGTH_LONG).show();
             }
         });
 
@@ -87,12 +104,13 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
         ImageView image;
         TextView brand,name,price,description;
         Button button;
+        RatingBar bar;
         public ItemViewHolder(View itemView) {
             super(itemView);
 
             image=(ImageView)itemView.findViewById(R.id.imageViewItem);
 
-            brand = (TextView)itemView.findViewById(R.id.itemBrand);
+            //brand = (TextView)itemView.findViewById(R.id.itemBrand);
 
             name = (TextView)itemView.findViewById(R.id.itemName);
 
@@ -101,7 +119,25 @@ public class ItemDisplayAdapter extends RecyclerView.Adapter<ItemDisplayAdapter.
             description = (TextView)itemView.findViewById(R.id.itemDesc);
 
             button = (Button) itemView.findViewById(R.id.buyButton);
+
+            bar = (RatingBar)itemView.findViewById(R.id.ratingBar2);
         }
 
     }
+
+    public boolean isNetworkConnected() {
+
+        // get Connectivity Manager to get network status
+        ConnectivityManager connMgr = (ConnectivityManager)
+                applicationContext.getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        NetworkInfo networkInfo = connMgr.getActiveNetworkInfo();
+        if (networkInfo != null && networkInfo.isConnected()) {
+           // Log.i("Connection test", "passed");
+            return true; //we have a connection
+        } else return false;
+
+
+    }
+
 }

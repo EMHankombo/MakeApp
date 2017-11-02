@@ -5,12 +5,12 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.enoch.makeapp.data.model.ProductModel;
 import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
 import com.example.enoch.makeapp.di.component.IActivityComponent;
@@ -40,7 +40,7 @@ public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
         return iActivityComponent;
     }
 
-    @BindView(R.id.recyclerMascara) RecyclerView recyclerView;
+    @BindView(R.id.recyclerMascara) ShimmerRecyclerView shimmerRecyclerView;
 
     @Inject
     MascaraPresenter<IMascaraMvpView> mascaraMvpViewMascaraPresenter;
@@ -58,8 +58,9 @@ public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
 
         ButterKnife.bind(this,view);
 
-        initializeRecycler(view);
-        initialiseDagger();
+
+       // ShimmerRecyclerView shimmerRecycler = (ShimmerRecyclerView) view.findViewById(R.id.recyclerMascara);
+        shimmerRecyclerView.showShimmerAdapter();
 
         return view;
 
@@ -70,6 +71,8 @@ public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
         super.onViewCreated(view, savedInstanceState);
 
 
+        initializeRecycler(view);
+        initialiseDagger();
 
         /*mascaraMvpViewMascaraPresenter = new MascaraPresenter<>(new AppDataManager(),new AppSchedulerProvider(),
                 new CompositeDisposable()); */
@@ -81,8 +84,8 @@ public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
 
     public void initializeRecycler(View view){
 
-       // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerMascara);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+       // shimmerRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerMascara);
+        shimmerRecyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
     }
 
@@ -98,7 +101,7 @@ public class MascaraFragment extends BaseFragment implements IMascaraMvpView {
     @Override
     public void onFetchSuccess(List<ProductModel> productModel) {
 
-        recyclerView.setAdapter(new MakeAppAdapter(productModel, R.layout.row, getActivity().getApplicationContext(), new onClickListener() {
+        shimmerRecyclerView.setAdapter(new MakeAppAdapter(productModel, R.layout.row, getActivity().getApplicationContext(), new onClickListener() {
             @Override
             public void onItemClick(ProductModel productModel) {
                 int id = productModel.getId();

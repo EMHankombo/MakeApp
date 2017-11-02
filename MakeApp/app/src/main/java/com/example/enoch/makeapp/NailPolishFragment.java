@@ -9,6 +9,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.enoch.makeapp.data.model.ProductModel;
 import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
 import com.example.enoch.makeapp.di.component.IActivityComponent;
@@ -61,6 +62,11 @@ public class NailPolishFragment extends BaseFragment implements INailPolishListM
 
         setRetainInstance(true);
 
+
+
+        ShimmerRecyclerView shimmerRecycler = (ShimmerRecyclerView) view.findViewById(R.id.recyclerNail);
+        shimmerRecycler.showShimmerAdapter();
+
         initializeRecycler(view);
         initialiseDagger();
 
@@ -84,7 +90,7 @@ public class NailPolishFragment extends BaseFragment implements INailPolishListM
 
     public void initializeRecycler(View view){
 
-       // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerNail);
+       // shimmerRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerNail);
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
     }

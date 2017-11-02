@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.enoch.makeapp.R;
@@ -43,9 +44,11 @@ public class RealmProductAdapter extends RecyclerView.Adapter<RealmProductAdapte
     @Override
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
-        holder.brand.setText(productsDatabase.get(position).getBrand());
+//        holder.brand.setText(productsDatabase.get(position).getBrand());
         holder.name.setText(productsDatabase.get(position).getName());
-        holder.price.setText("$" + productsDatabase.get(position).getPrice());
+        holder.price.setText("£" + productsDatabase.get(position).getPrice());
+
+        holder.bar.setRating((float)productsDatabase.get(position).getRating());
 
         holder.bind(productsDatabase.get(position), realmClickListener);
 
@@ -60,13 +63,17 @@ public class RealmProductAdapter extends RecyclerView.Adapter<RealmProductAdapte
 
         ImageView image;
         TextView brand, name, price;
+        RatingBar bar;
         public MyViewHolder(View itemView) {
             super(itemView);
 
             image = (ImageView) itemView.findViewById(R.id.image);
-            brand = (TextView) itemView.findViewById(R.id.brandName);
+//            brand = (TextView) itemView.findViewById(R.id.brandName);
             name = (TextView) itemView.findViewById(R.id.name);
             price = (TextView) itemView.findViewById(R.id.price);
+            bar = (RatingBar)itemView.findViewById(R.id.ratingBar);
+
+
         }
 
 

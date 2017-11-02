@@ -9,12 +9,12 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
 import com.example.enoch.makeapp.RealmAdapter.RealmProductAdapter;
 import com.example.enoch.makeapp.data.database.localdb.ProductsDatabase;
 import com.example.enoch.makeapp.data.database.localdb.controller.RealmController;
@@ -25,7 +25,6 @@ import com.example.enoch.makeapp.di.module.ActivityModule;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 import com.example.enoch.makeapp.ui.lipstickList.ILipstickMvpView;
 import com.example.enoch.makeapp.ui.lipstickList.LipStickPresenter;
-import com.facebook.shimmer.ShimmerFrameLayout;
 
 import java.util.List;
 
@@ -48,11 +47,10 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
         return iActivityComponent;
     }
 
-    @BindView(R.id.recyclerLip) RecyclerView recyclerView;
+    @BindView(R.id.recyclerLip) ShimmerRecyclerView shimmerRecycler;
 
     @BindView(R.id.swipeToRefreshLipstick) SwipeRefreshLayout swipeRefreshLayout;
 
- ShimmerFrameLayout shimmerFrameLayout;
 
     @Inject
     LipStickPresenter<ILipstickMvpView> lipstickMvpViewLipStickPresenter;
@@ -78,7 +76,9 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
 
         View view = inflater.inflate(R.layout.fragment_lipstick, container, false);
+        ButterKnife.bind(this,view);
 
+        shimmerRecycler.showShimmerAdapter();
 
 
 
@@ -92,7 +92,7 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
     @Override
     public void onViewCreated(View view, @Nullable Bundle savedInstanceState) {
 
-        ButterKnife.bind(this,view);
+
 
 
 
@@ -121,8 +121,8 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
     public void initializeRecycler(View view){
 
-       // recyclerView = (RecyclerView) view.findViewById(R.id.recyclerLip);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
+       // shimmerRecyclerView = (RecyclerView) view.findViewById(R.id.recyclerLip);
+        shimmerRecycler.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
     }
 
@@ -163,6 +163,11 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
             productsDatabase.setName(resultForResult.getName());
             productsDatabase.setPrice(resultForResult.getPrice());
 
+            if(resultForResult.getRating()!= null) {
+                productsDatabase.setRating(Double.parseDouble(resultForResult.getRating()));
+            } else {
+                productsDatabase.setRating(0.0);
+            }
 
 
 
@@ -170,7 +175,8 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
 
             realmController.saveLipStick(productsDatabase);
 
-           // Log.i("realm", String.valueOf(productsDatabase.getId()));
+            Log.i("realm", String.valueOf(realmController.getLipstick().get(0).getRating()));
+
         }
 
         makeAppAdapter = new MakeAppAdapter(productModel,R.layout.row, getActivity().getApplicationContext(), new onClickListener() {
@@ -195,7 +201,7 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
         });
 
 
-        recyclerView.setAdapter(makeAppAdapter);
+        shimmerRecycler.setAdapter(makeAppAdapter);
 
 
     }
@@ -222,7 +228,8 @@ public class LipstickFragment extends BaseFragment implements ILipstickMvpView{
             Log.i("Connection test","passed");
             return true; //we have a connection
         } else {
-            recyclerView.setAdapter(new RealmProductAdapter(realmController.getLipstick(), R.layout.row, getActivity().getApplicationContext(), new RealmProductOnclick() {
+            Log.i("ncc",realmController.getLipstick().toString());
+            shimmerRecycler.setAdapter(new RealmProductAdapter(realmController.getLipstick(), R.layout.row, getActivity().getApplicationContext(), new RealmProductOnclick() {
                 @Override
                 public void onItemClick(ProductsDatabase productsDatabase) {
 

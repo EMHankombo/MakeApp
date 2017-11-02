@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.example.enoch.makeapp.data.model.BrandModel;
@@ -46,9 +47,15 @@ public class BrandsAdapter extends RecyclerView.Adapter<BrandsAdapter.BrandViewH
     public void onBindViewHolder(BrandViewHolder holder, int position) {
 
 
-        holder.brand.setText(brandModels.get(position).getBrand());
+       // holder.brand.setText(brandModels.get(position).getBrand());
         holder.name.setText(brandModels.get(position).getName());
-        holder.price.setText("$" + brandModels.get(position).getPrice());
+        holder.price.setText("£" + brandModels.get(position).getPrice());
+
+        if((brandModels.get(position).getRating())!= null) {
+            holder.bar.setRating(Float.parseFloat(brandModels.get(position).getRating()));
+        }else {
+            holder.bar.setRating(Float.parseFloat("0"));
+        }
 
         //bind the onClick
         holder.bind(brandModels.get(position), clickListener);
@@ -68,14 +75,17 @@ public class BrandsAdapter extends RecyclerView.Adapter<BrandsAdapter.BrandViewH
     public class BrandViewHolder extends RecyclerView.ViewHolder {
         ImageView image;
         TextView brand, name, price;
+        RatingBar bar;
+
 
         public BrandViewHolder(View itemView) {
             super(itemView);
 
             image = (ImageView) itemView.findViewById(R.id.image);
-            brand = (TextView) itemView.findViewById(R.id.brandName);
+//            brand = (TextView) itemView.findViewById(R.id.brandName);
             name = (TextView) itemView.findViewById(R.id.name);
             price = (TextView) itemView.findViewById(R.id.price);
+            bar = (RatingBar)itemView.findViewById(R.id.ratingBar);
         }
 
 

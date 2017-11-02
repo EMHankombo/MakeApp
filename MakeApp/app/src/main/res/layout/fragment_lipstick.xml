@@ -6,10 +6,7 @@
 
     <!-- TODO: Update blank fragment layout -->
 
-    <com.facebook.shimmer.ShimmerFrameLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:id="@+id/shimmerLip">
+
 
     <android.support.v4.widget.SwipeRefreshLayout
         android:id="@+id/swipeToRefreshLipstick"
@@ -17,14 +14,15 @@
         android:layout_height="match_parent"
         >
 
-    <android.support.v7.widget.RecyclerView
+    <com.cooltechworks.views.shimmer.ShimmerRecyclerView
         android:id="@+id/recyclerLip"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+    </com.cooltechworks.views.shimmer.ShimmerRecyclerView>
 
 
-    </android.support.v7.widget.RecyclerView>
+
     </android.support.v4.widget.SwipeRefreshLayout>
 
-    </com.facebook.shimmer.ShimmerFrameLayout>
+
 </FrameLayout>

@@ -26,7 +26,7 @@ public class ProductsDatabase extends RealmObject{
 
     private String description;
 
-    private String rating;
+    private double rating;
 
     private String category;
 
@@ -46,7 +46,7 @@ public class ProductsDatabase extends RealmObject{
 
     public ProductsDatabase(Integer id, String brand, String name, String price,
                             String imageLink, String productLink, String websiteLink,
-                            String description, String rating, String category, String productType,
+                            String description, double rating, String category, String productType,
                             String createdAt, String updatedAt, String productApiUrl) {
         this.id = id;
         this.brand = brand;
@@ -130,11 +130,11 @@ public class ProductsDatabase extends RealmObject{
         this.description = description;
     }
 
-    public String getRating() {
+    public double getRating() {
         return rating;
     }
 
-    public void setRating(String rating) {
+    public void setRating(double rating) {
         this.rating = rating;
     }
 
