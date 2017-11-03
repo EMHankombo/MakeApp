@@ -1,0 +1,42 @@
+{
+  "project_info": {
+    "project_number": "584891616572",
+    "firebase_url": "https://makeapp-f417c.firebaseio.com",
+    "project_id": "makeapp-f417c",
+    "storage_bucket": "makeapp-f417c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:584891616572:android:94b1c3a1da314e0d",
+        "android_client_info": {
+          "package_name": "com.example.enoch.makeapp"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "584891616572-6d0sq67mg10qq3j3d3ivet7mtf6ddc9u.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCneIkGoMdrd71RXWj37nwk0pzrYZ12W1E"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
