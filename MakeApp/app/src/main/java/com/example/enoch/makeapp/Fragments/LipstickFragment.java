@@ -1,4 +1,4 @@
-package com.example.enoch.makeapp;
+package com.example.enoch.makeapp.Fragments;
 
 
 import android.content.Context;
@@ -15,13 +15,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.example.enoch.makeapp.MakeAppAdapter;
+import com.example.enoch.makeapp.MyApp;
+import com.example.enoch.makeapp.R;
 import com.example.enoch.makeapp.RealmAdapter.RealmProductAdapter;
+import com.example.enoch.makeapp.RealmProductOnclick;
 import com.example.enoch.makeapp.data.database.localdb.ProductsDatabase;
 import com.example.enoch.makeapp.data.database.localdb.controller.RealmController;
 import com.example.enoch.makeapp.data.model.ProductModel;
 import com.example.enoch.makeapp.di.component.DaggerIActivityComponent;
 import com.example.enoch.makeapp.di.component.IActivityComponent;
 import com.example.enoch.makeapp.di.module.ActivityModule;
+import com.example.enoch.makeapp.onClickListener;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 import com.example.enoch.makeapp.ui.lipstickList.ILipstickMvpView;
 import com.example.enoch.makeapp.ui.lipstickList.LipStickPresenter;

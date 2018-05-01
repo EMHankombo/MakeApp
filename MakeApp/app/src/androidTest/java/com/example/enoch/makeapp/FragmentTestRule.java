@@ -8,7 +8,7 @@ import android.support.v4.app.FragmentTransaction;
 import org.junit.Assert;
 
 /**
- * Created by kalpesh on 20/07/2017.
+ * Created by mainza1992 on 20/07/2017.
  */
 
 public class FragmentTestRule<F extends Fragment> extends ActivityTestRule<MainActivity> {

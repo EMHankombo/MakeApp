@@ -16,7 +16,7 @@
 package com.example.enoch.makeapp.ui.base;
 
 /**
- * Created by kalpesh on 20/09/2017.
+ * Created by mainza1992 on 20/09/2017.
  */
 /**
  * Base interface that any class that wants to act as a View in the MVP (Model View Presenter)

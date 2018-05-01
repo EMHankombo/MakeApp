@@ -8,6 +8,9 @@ import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
 import android.view.MenuItem;
 
+import com.example.enoch.makeapp.Fragments.HomeBrandFragment;
+import com.example.enoch.makeapp.Fragments.HomeFragment;
+
 public class MainActivity extends AppCompatActivity {
 
 

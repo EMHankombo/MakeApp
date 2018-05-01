@@ -5,7 +5,7 @@
     android:layout_height="match_parent"
     android:layout_weight="2"
 
-    tools:context="com.example.enoch.makeapp.HomeFragment">
+    tools:context="com.example.enoch.makeapp.Fragments.HomeFragment">
 
     <!-- TODO: Update blank fragment layout -->
 

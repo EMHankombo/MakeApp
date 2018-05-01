@@ -1,14 +1,14 @@
 package com.example.enoch.makeapp.di.component;
 
 
-import com.example.enoch.makeapp.BrandFragment;
-import com.example.enoch.makeapp.FoundationFragment;
-import com.example.enoch.makeapp.HomeBrandFragment;
-import com.example.enoch.makeapp.HomeFragment;
-import com.example.enoch.makeapp.ItemDisplayFragment;
-import com.example.enoch.makeapp.LipstickFragment;
-import com.example.enoch.makeapp.MascaraFragment;
-import com.example.enoch.makeapp.NailPolishFragment;
+import com.example.enoch.makeapp.Fragments.BrandFragment;
+import com.example.enoch.makeapp.Fragments.FoundationFragment;
+import com.example.enoch.makeapp.Fragments.HomeBrandFragment;
+import com.example.enoch.makeapp.Fragments.HomeFragment;
+import com.example.enoch.makeapp.Fragments.ItemDisplayFragment;
+import com.example.enoch.makeapp.Fragments.LipstickFragment;
+import com.example.enoch.makeapp.Fragments.MascaraFragment;
+import com.example.enoch.makeapp.Fragments.NailPolishFragment;
 import com.example.enoch.makeapp.di.module.ActivityModule;
 import com.example.enoch.makeapp.di.scope.PerActivity;
 

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
 
+import com.example.enoch.makeapp.Fragments.BrandFragment;
 import com.example.enoch.makeapp.data.model.BrandModel;
 import com.squareup.picasso.Picasso;
 

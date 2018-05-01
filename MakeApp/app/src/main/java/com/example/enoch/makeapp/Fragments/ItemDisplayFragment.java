@@ -1,4 +1,4 @@
-package com.example.enoch.makeapp;
+package com.example.enoch.makeapp.Fragments;
 
 
 import android.content.Context;
@@ -15,6 +15,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.cooltechworks.views.shimmer.ShimmerRecyclerView;
+import com.example.enoch.makeapp.ItemDisplayAdapter;
+import com.example.enoch.makeapp.MyApp;
+import com.example.enoch.makeapp.R;
 import com.example.enoch.makeapp.RealmAdapter.RealmIndividualAdapter;
 import com.example.enoch.makeapp.data.database.localdb.IndividualItemDatabase;
 import com.example.enoch.makeapp.data.database.localdb.controller.RealmController;

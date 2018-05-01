@@ -1,4 +1,4 @@
-package com.example.enoch.makeapp;
+package com.example.enoch.makeapp.Fragments;
 
 
 import android.os.Bundle;
@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.example.enoch.makeapp.R;
 import com.example.enoch.makeapp.di.component.IActivityComponent;
 import com.example.enoch.makeapp.ui.base.BaseFragment;
 
